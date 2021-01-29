@@ -93,6 +93,9 @@ nav ul li a:hover, a.active{
     justify-content: space-between;
     align-items: center;
 }
+.number-input{
+    display: flex;
+}
 .inp-width{
     min-width: 300px;
 }
@@ -100,8 +103,11 @@ nav ul li a:hover, a.active{
     color: #3352F2;
     font-size: 30px;
     padding: 2px;
-    margin: 10px 5px 0px 0px;
+    margin: 5px 5px;
     word-spacing: 20px;
+}
+.plus-minus-btn:hover{
+    cursor: pointer;
 }
 .booking-form .inputs{
     display: grid;
@@ -121,4 +127,15 @@ nav ul li a:hover, a.active{
 .amount{
     display: flex;
     justify-content: space-between;
+}
+
+
+
+
+/* Remove number input arrow/spinner  */
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
