@@ -103,7 +103,7 @@ nav ul li a:hover, a.active{
     color: #3352F2;
     font-size: 30px;
     padding: 2px;
-    margin: 5px 5px;
+    margin: 5px 10px;
     word-spacing: 20px;
 }
 .plus-minus-btn:hover, .btn-style:hover{
