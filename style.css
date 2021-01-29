@@ -106,7 +106,7 @@ nav ul li a:hover, a.active{
     margin: 5px 5px;
     word-spacing: 20px;
 }
-.plus-minus-btn:hover{
+.plus-minus-btn:hover, .btn-style:hover{
     cursor: pointer;
 }
 .booking-form .inputs{
