@@ -9,8 +9,9 @@
 body {
     font-family: 'Roboto', sans-serif;
     background: url("images/ship.png");
+    height: 100%;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center;
     background-attachment: scroll;
     background-size: cover;
 }
@@ -157,6 +158,10 @@ a.active {
 
 #invoice {
     display: none;
+}
+
+#invoice div {
+    margin: 20px 0;
 }
 
 

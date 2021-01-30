@@ -33,49 +33,88 @@ function updateCalculation() {
 
 
 // date function
-let today = new Date();
-let date = today.getDate();
-let month = today.getMonth() + 1;
+var today = new Date();
+var date = today.getDate();
+var month = today.getMonth() + 1;
 
-let day = today.getFullYear() + (month >= 10 ? "-" : "-0") + month + (date >= 10 ? "-" : "-0") + date;
+var day = today.getFullYear() + (month >= 10 ? "-" : "-0") + month + (date >= 10 ? "-" : "-0") + date;
 document.getElementById("departureDate").min = day;
-document.getElementById("departureDate").value = day;
-setReturnDateMin();
 
 function setReturnDateMin() {
     document.getElementById("returnDate").min = document.getElementById("departureDate").value;
 }
 
 function updateForReturn() {
-    notReturning = false;
-    updateCalculation();
+    if (document.getElementById("departureDate").value == "") {
+        document.getElementById("returnDate").value = "";
+        alert("Please, First Choose A Departure Date ");
+    }
+    else {
+        notReturning = false;
+        updateCalculation();
+    }
 }
 
 // Booking Button
 document.getElementById("bookingBtn").addEventListener('click', function () {
-    if (checkSetFields() && this.innerText == "Book Now") {
+    if (checkAndSetValues() && this.innerText == "Book Now") {
         document.getElementById("bookingForm").style.display = "none";
         document.getElementById("invoice").style.display = "block";
-        this.innerText = "Book Another Cruise";
+        setInvoice();
+        this.innerText = "Book Another Cruise Trip";
     }
-    else {
+    else if (this.innerText == "Book Another Cruise Trip") {
         location.reload();
     }
 });
 
-function checkSetFields() {
-    if (getCount("firstClassCount") == 0 && getCount("economyClassCount") == 0) {
-        alert("Please Select a Cruise Class");
-        return false;
-    } else {
-        let fromInput = document.getElementById("from");
-        let toInput = document.getElementById("to");
-        if (fromInput.innerText == "") {
-            fromInput.innerText = fromInput.placeholder;
-        }
-        if (toInput.innerText == "") {
-            toInput.innerText = toInput.placeholder;
-        }
+function checkAndSetValues() {
+    if (document.getElementById("from").value == "") {
+        alert("Please, Enter Your Departure Location");
+    }
+    else if (document.getElementById("to").value == "") {
+        alert("Please, Enter Your Destination");
+    }
+    else if (document.getElementById("departureDate").value == "") {
+        alert("Please, First Choose A Departure Date ");
+    }
+    else if (getCount("firstClassCount") == 0 && getCount("economyClassCount") == 0) {
+        alert("Please Choose Minimum One Cruise Class To Continue");
+    }
+    else {
         return true;
+    }
+    return false;
+}
+function setInvoice() {
+    let bookingType = document.getElementById("booking-Type");
+    let cruiseRoute = document.getElementById("cruise-route");
+    let invoiceDepartureDate = document.getElementById("invoice-departure-date");
+    let invoiceReturnDate = document.getElementById("invoice-return-date");
+    let invoiceFirstClassCount = document.getElementById("first-class-count");
+    let invoiceEconomyClassCount = document.getElementById("economy-count");
+
+    let startFrom = document.getElementById("from");
+    let destination = document.getElementById("to");
+    let departureDate = document.getElementById("departureDate");
+    let returnDate = document.getElementById("returnDate");
+    let firstClassCount = getCount("firstClassCount");
+    let economyClassCount = getCount("economyClassCount");
+
+    cruiseRoute.innerHTML = '<h3>' + startFrom.value + '</h3>to<h3>' + destination.value + '</h3>';
+    invoiceDepartureDate.innerHTML = '<p>Departure Date : <strong>' + departureDate.value + '</strong></p>';
+
+    if (returnDate.value == "") {
+        bookingType.innerHTML = '<h3>1-WAY CRUISE TRIP</h3>';
+    }
+    else {
+        bookingType.innerHTML = '<h3>2-WAY CRUISE TRIP</h3>';
+        invoiceReturnDate.innerHTML = '<p>Return Date : <strong>' + returnDate.value + '</strong></p>';
+    }
+    if (firstClassCount > 0) {
+        invoiceFirstClassCount.innerHTML = '<p>No. of Booked First Class Cabin : ' + firstClassCount + '</p>';
+    }
+    if (economyClassCount > 0) {
+        invoiceEconomyClassCount.innerHTML = '<p>No. of Booked Economy Class Cabin : ' + economyClassCount + '</p>';
     }
 }
