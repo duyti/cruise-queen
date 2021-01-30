@@ -1,6 +1,17 @@
 // global variable
 var notReturning = true;    //  to check if customer choose a return date
 
+// to set a readonly default value
+var startPoint = document.getElementById("from");
+var goingTo = document.getElementById("to");
+
+startPoint.value = startPoint.placeholder;
+goingTo.value = goingTo.placeholder;
+
+startPoint.readOnly = true;
+goingTo.readOnly = true;
+
+
 // update count on each +/-
 function updateCount(idPart, isIncrease) {
     const caseCount = getCount(idPart + "Count");
@@ -74,13 +85,7 @@ document.getElementById("bookingBtn").addEventListener('click', function () {
 
 // check for all necessary inputs. if empty show alert and booking will not proceed
 function checkInputs() {
-    if (document.getElementById("from").value == "") {
-        alert("Please, Enter Your Departure Location");
-    }
-    else if (document.getElementById("to").value == "") {
-        alert("Please, Enter Your Destination");
-    }
-    else if (document.getElementById("departureDate").value == "") {
+    if (document.getElementById("departureDate").value == "") {
         alert("Please, First Choose A Departure Date ");
     }
     else if (getCount("firstClassCount") == 0 && getCount("economyClassCount") == 0) {
