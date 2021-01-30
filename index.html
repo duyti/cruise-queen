@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curise Booking</title>
+    <title>Cruise Booking</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
@@ -42,7 +42,7 @@
                 <h3>Book Ocean Time</h3>
                 <div class="input-group">
                     <label for="">Deport From</label>
-                    <input id="depor" class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                    <input id="depor" class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
                 </div>
                 <div class="input-group">
                     <label for="">Destination</label>
@@ -51,11 +51,11 @@
                 <div class="inputs">
                     <div class="input-group">
                         <label" for="">Departure</label>
-                            <input id="departureDate" class="inp-style" type="date">
+                            <input id="departureDate" class="inp-style" type="date" onchange="setReturnDateMin();">
                     </div>
                     <div class="input-group">
                         <label for="">Return</label>
-                        <input id="returnDate" class="inp-style" type="date">
+                        <input id="returnDate" class="inp-style" type="date" onchange="updateForReturn();">
                     </div>
                 </div>
 
@@ -64,13 +64,13 @@
                         <label for="">First Class ($150)</label>
                         <div class="number-input">
                             <div class="plus-minus-btn">
-                                <p id="firstClassDecrease" onclick="updateCount('firstClass',false,150);"> - </p>
+                                <p id="firstClassDecrease" onclick="updateCount('firstClass',false)"> - </p>
                             </div>
                             <div>
                                 <input id="firstClassCount" class="inp-style inp-width" type="number" value="0">
                             </div>
                             <div class="plus-minus-btn">
-                                <p id="firstClassIncrease" onclick="updateCount('firstClass',true,150);"> + </p>
+                                <p id="firstClassIncrease" onclick="updateCount('firstClass',true);"> + </p>
                             </div>
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                         <label for="">Economy Class ($100)</label>
                         <div class="number-input">
                             <div class="plus-minus-btn">
-                                <p id="economyClassDecrease" onclick="updateCount('economyClass',false,100);"> - </p>
+                                <p id="economyClassDecrease" onclick="updateCount('economyClass',false);"> - </p>
                             </div>
                             <div>
                                 <input id="economyClassCount" class="inp-style inp-width" type="number" value="0">
                             </div>
                             <div class="plus-minus-btn">
-                                <p id="economyClassIncrease" onclick="updateCount('economyClass',true,100);"> + </p>
+                                <p id="economyClassIncrease" onclick="updateCount('economyClass',true);"> + </p>
                             </div>
                         </div>
                     </div>
@@ -131,18 +131,55 @@
 
     <!--Thank You-->
     <script>
-        function getCount(id) {
-            return parseFloat(document.getElementById(id).value);
-        }
+        // global variables
+        var notReturning = true;    //  to check if customer choose a return date
+
         // update count
-        function updateCount(idPart, isIncrease, unitPrice) {
+        function updateCount(idPart, isIncrease) {
             const caseCount = getCount(idPart + "Count");
             document.getElementById(idPart + "Count").value = caseCount + (isIncrease ? 1 : (caseCount <= 0) ? 0 : -1);
 
-            // updateCalculation();
+            updateCalculation();
         }
 
+        // get value from input
+        function getCount(id) {
+            return parseFloat(document.getElementById(id).value);
+        }
+
+        function updateCalculation() {
+            const firstClassUnitPrice = 150;
+            const economyClassUnitPrice = 100;
+            const firstClassCount = getCount("firstClassCount");
+            const economyClassCount = getCount("economyClassCount");
+            const subtotalPrice = ((firstClassCount * firstClassUnitPrice) + (economyClassCount * economyClassUnitPrice)) * (notReturning ? 1 : 2);
+            document.getElementById("subtotalPrice").innerText = "$" + subtotalPrice;
+            document.getElementById("vat").innerText = "$" + Math.round(subtotalPrice * .10);
+            document.getElementById("totalPrice").innerText = "$" + (subtotalPrice + Math.round(subtotalPrice * .10));
+        }
+
+
         // date function
+        let today = new Date();
+        let date = today.getDate();
+        let month = today.getMonth() + 1;
+
+        document.getElementById("departureDate").min = today.getFullYear() + (month >= 10 ? "-" : "-0") + month + (date >= 10 ? "-" : "-0") + date;
+
+        function setReturnDateMin() {
+            document.getElementById("returnDate").min = document.getElementById("departureDate").value;
+        }
+
+        function updateForReturn() {
+            if (document.getElementById("departureDate").value == "") {
+                document.getElementById("returnDate").value = "";
+                alert("First Select Your Departure Date.");
+            }
+            else {
+                notReturning = false;
+                updateCalculation();
+            }
+        }
     </script>
 </body>
 
