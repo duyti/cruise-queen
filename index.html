@@ -131,12 +131,15 @@
 
     <!--Thank You-->
     <script>
-        // increaments
-        function updateCount(idName, isIncrease, unitPrice) {
-            const caseName = document.getElementById(idName + "Count");
-            const caseCount = parseFloat(caseName.value);
-            caseName.value = caseCount + (isIncrease ? 1 : (caseCount <= 0) ? 0 : -1);
-            console.log(caseName, caseName.value, caseName.defaultValue);
+        function getCount(id) {
+            return parseFloat(document.getElementById(id).value);
+        }
+        // update count
+        function updateCount(idPart, isIncrease, unitPrice) {
+            const caseCount = getCount(idPart + "Count");
+            document.getElementById(idPart + "Count").value = caseCount + (isIncrease ? 1 : (caseCount <= 0) ? 0 : -1);
+
+            // updateCalculation();
         }
 
         // date function
