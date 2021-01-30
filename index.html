@@ -92,45 +92,60 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="calculations">
-                    <div class="amount">
-                        <div class="left">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="right">
-                            <p id="subtotalPrice">$0</p>
-                        </div>
-                    </div>
-                    <div class="amount">
-                        <div class="left">
-                            <p>Charge 10% VAT</p>
-                        </div>
-                        <div class="right">
-                            <p id="vat">$0</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="amount">
-                        <div class="left">
-                            <h4>Total</h4>
-                        </div>
-                        <div class="right">
-                            <p id="totalPrice">$0</p>
-                        </div>
-                    </div>
-                </div>
-                <button id="bookingBtn" class="btn-style">Book Now</button>
             </div>
 
             <!-- show invoice. Bonus -->
-            <div id="invoice"></div>
+            <div id="invoice">
+                <h2>Booking Successful</h2>
+                <h3>Invoice No. : ##########</h3>
+                <div>
+                    <ul>
+                        <li id="invoice-from">from</li>
+                        <li id="invoice-to">to</li>
+                        <li id="invoice-daperture">dep</li>
+                        <li id="invoice-return">ret</li>
+                        <li id="invoice-firstclass">first</li>
+                        <li id="invoice-economy">econo</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="subtotalPrice">$0</p>
+                    </div>
+                </div>
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p id="vat">$0</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p id="totalPrice">$0</p>
+                    </div>
+                </div>
+            </div>
+            <button id="bookingBtn" class="btn-style">Book Now</button>
+
         </div>
 
     </main>
 
     <!--Thank You-->
-    <script>
+    <script src="script.js">
         // global variables
         var notReturning = true;    //  to check if customer choose a return date
 
@@ -186,6 +201,9 @@
                 updateCalculation();
             }
         }
+
+        // Booking Button
+
     </script>
 </body>
 
