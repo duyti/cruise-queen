@@ -64,13 +64,13 @@
                         <label for="">First Class ($150)</label>
                         <div class="number-input">
                             <div class="plus-minus-btn">
-                                <p id="firstClassDecrease"> - </p>
+                                <p id="firstClassDecrease" onclick="updateCount('firstClass',false,150);"> - </p>
                             </div>
                             <div>
-                                <input id="firstClass" class="inp-style inp-width" type="number" value="0">
+                                <input id="firstClassCount" class="inp-style inp-width" type="number" value="0">
                             </div>
                             <div class="plus-minus-btn">
-                                <p id="firstClassIncrease"> + </p>
+                                <p id="firstClassIncrease" onclick="updateCount('firstClass',true,150);"> + </p>
                             </div>
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                         <label for="">Economy Class ($100)</label>
                         <div class="number-input">
                             <div class="plus-minus-btn">
-                                <p id="economyClassDecrease"> - </p>
+                                <p id="economyClassDecrease" onclick="updateCount('economyClass',false,100);"> - </p>
                             </div>
                             <div>
-                                <input id="economyClass" class="inp-style inp-width" type="number" value="0">
+                                <input id="economyClassCount" class="inp-style inp-width" type="number" value="0">
                             </div>
                             <div class="plus-minus-btn">
-                                <p id="economyClassIncrease"> + </p>
+                                <p id="economyClassIncrease" onclick="updateCount('economyClass',true,100);"> + </p>
                             </div>
                         </div>
                     </div>
@@ -127,12 +127,19 @@
             <div id="invoice"></div>
         </div>
 
-
     </main>
 
     <!--Thank You-->
     <script>
+        // increaments
+        function updateCount(idName, isIncrease, unitPrice) {
+            const caseName = document.getElementById(idName + "Count");
+            const caseCount = parseFloat(caseName.value);
+            caseName.value = caseCount + (isIncrease ? 1 : (caseCount <= 0) ? 0 : -1);
+            console.log(caseName, caseName.value, caseName.defaultValue);
+        }
 
+        // date function
     </script>
 </body>
 
