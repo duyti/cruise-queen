@@ -154,12 +154,9 @@ a.active {
     justify-content: space-between;
 }
 
-#bookingForm {
-    display: block;
-}
 
 #invoice {
-    display: block;
+    display: none;
 }
 
 

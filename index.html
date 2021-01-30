@@ -41,12 +41,12 @@
             <div id="bookingForm">
                 <h3>Book Ocean Time</h3>
                 <div class="input-group">
-                    <label for="">Deport From</label>
-                    <input id="depor" class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+                    <label for="">From</label>
+                    <input id="from" class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
                 </div>
                 <div class="input-group">
-                    <label for="">Destination</label>
-                    <input id="destination" class="inp-style" type="text" name="" placeholder="New York, United States">
+                    <label for="">To</label>
+                    <input id="to" class="inp-style" type="text" name="" placeholder="New York, United States">
                 </div>
                 <div class="inputs">
                     <div class="input-group">
@@ -98,17 +98,12 @@
             <div id="invoice">
                 <h2>Booking Successful</h2>
                 <h3>Invoice No. : ##########</h3>
-                <div>
-                    <ul>
-                        <li id="invoice-from">from</li>
-                        <li id="invoice-to">to</li>
-                        <li id="invoice-daperture">dep</li>
-                        <li id="invoice-return">ret</li>
-                        <li id="invoice-firstclass">first</li>
-                        <li id="invoice-economy">econo</li>
-                    </ul>
-                </div>
-
+                <div id="invoice-from"></div>
+                <div id="invoice-to"></div>
+                <div id="invoice-date"></div>
+                <div id="invoice-return-date"></div>
+                <div id="invoice-first-class"></div>
+                <div id="invoice-economy"></div>
             </div>
 
             <div class="calculations">
@@ -143,6 +138,7 @@
         </div>
 
     </main>
+
 
     <!--Thank You-->
     <script src="script.js"></script>
