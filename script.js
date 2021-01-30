@@ -9,7 +9,7 @@ startPoint.value = startPoint.placeholder;
 goingTo.value = goingTo.placeholder;
 
 startPoint.readOnly = true;
-goingTo.readOnly = true;
+goingTo.readOgitnly = true;
 
 
 // update count on each +/-
