@@ -67,7 +67,7 @@
                                 <p id="firstClassDecrease" onclick="updateCount('firstClass',false)"> - </p>
                             </div>
                             <div>
-                                <input id="firstClassCount" class="inp-style inp-width" type="number" value="0">
+                                <input id="firstClassCount" class="inp-style inp-width" type="number">
                             </div>
                             <div class="plus-minus-btn">
                                 <p id="firstClassIncrease" onclick="updateCount('firstClass',true);"> + </p>
@@ -84,7 +84,7 @@
                                 <p id="economyClassDecrease" onclick="updateCount('economyClass',false);"> - </p>
                             </div>
                             <div>
-                                <input id="economyClassCount" class="inp-style inp-width" type="number" value="0">
+                                <input id="economyClassCount" class="inp-style inp-width" type="number">
                             </div>
                             <div class="plus-minus-btn">
                                 <p id="economyClassIncrease" onclick="updateCount('economyClass',true);"> + </p>
@@ -144,7 +144,13 @@
 
         // get value from input
         function getCount(id) {
-            return parseFloat(document.getElementById(id).value);
+            const count = document.getElementById(id).value;
+            if (count == "") {
+                return 0;
+            }
+            else {
+                return parseFloat(count);
+            }
         }
 
         function updateCalculation() {
