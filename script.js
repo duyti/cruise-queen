@@ -58,12 +58,15 @@ function updateCalculation() {
 
 
 // to calculate current date
-var today = new Date();
-var date = today.getDate();
-var month = today.getMonth() + 1;
-var day = today.getFullYear() + (month >= 10 ? "-" : "-0") + month + (date >= 10 ? "-" : "-0") + date;
 
-document.getElementById("departureDate").min = day;         // set minimum departure date to today 
+
+document.getElementById("departureDate").min = (
+    function () {
+        const today = new Date();
+        const date = today.getDate();
+        const month = today.getMonth() + 1;
+        return today.getFullYear() + (month >= 10 ? "-" : "-0") + month + (date >= 10 ? "-" : "-0") + date;
+    })();         // set minimum departure date to today 
 
 function setReturnDateMin() {
     document.getElementById("returnDate").min = document.getElementById("departureDate").value;     // set minimum return date to departure date
