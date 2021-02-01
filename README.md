@@ -1,7 +1,7 @@
 # cruise-queen
-Demo Cruise Ticket Booking Page
+***Demo Cruise Ticket Booking Page***
 
-Outside assignment:
+***Outside assignment:
 
 -Start, Destination and Departure Date cannot be empty
 
@@ -14,7 +14,7 @@ Outside assignment:
 
 
 ********************************
-Need to update:
+***Need to update:
 
 -Minimum departure date should be today + 1
 
