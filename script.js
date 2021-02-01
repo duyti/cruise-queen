@@ -1,16 +1,28 @@
 // global variable
 var notReturning = true;    //  to check if customer choose a return date
 
-// to set a readonly default value
-var startPoint = document.getElementById("from");
-var goingTo = document.getElementById("to");
+// to set a default value
+setDefaultValue(document.getElementById("from"));
+setDefaultValue(document.getElementById("to"));
 
-startPoint.value = startPoint.placeholder;
-goingTo.value = goingTo.placeholder;
+function setDefaultValue(element) {
+    element.value = element.placeholder;
+}
 
-startPoint.readOnly = true;
-goingTo.readOnly = true;
 
+// set readonly so user cannot change value manually
+setReadOnly("from");
+setReadOnly("to");
+setReadOnly("firstClassCount");
+setReadOnly("economyClassCount");
+
+// startPoint.readOnly = true;
+// goingTo.readOnly = true;
+// document.getElementById("firstClassCount").readOnly = true;
+// document.getElementById("economyClassCount").readOnly = true;
+function setReadOnly(id) {
+    document.getElementById(id).readOnly = true;
+}
 
 // update count on each +/-
 function updateCount(idPart, isIncrease) {
